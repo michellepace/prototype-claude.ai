@@ -1,106 +1,79 @@
 # Prototype Claude
 
-A practice project to improve prototyping skills using v0.dev. The goal is to create a functional prototype that clones [Claude.ai](https://claude.ai/) interface, with mimicked user experience using Zustand for state management. 
-
-This repository is not the actual Next.js web app that will be created. It is an explicit statement of the purpose and success measurement of this project. As well as the documentation created to guide the agent, see [agent-docs](/agent-docs/).
-
-The project source code can be accessed here: [coming soon]
+A functional prototype clone of the [Claude.ai](https://claude.ai/) interface and user experience. Created using [v0.dev](https://v0.dev/) as a learning experiment to improve AI prototyping skills.
 
 ![Claude.ai interface prototype screenshot](agent-docs/screenshots/navigation.jpg)
 
-## Technology Stack
-A Next.js web application following modern conventions (App Router).
 
-- Next.js installed and configured with
-   - TypeScript: for adding static types to JavaScript to catch errors at compile time.
-   - ESLint: for enforcing consistent coding standards and detecting syntax errors.
-   - Tailwind CSS: for styling UI with Tailwind Utility classes
+## Project Goals
 
-- shadcn/ui components configured for
-  - Style: "New York"
-  - Starting Color palette: "Stone" (will be adjusted)
-  - CSS Variables: for centralised theming via Tailwind
-
-- Icon library: heroicons
-
-- Next Themes: for theme switching for light/dark mode
-
-- Zustand: for state management with persistent capabilities
-
-## Project Objectives
-
-This prototype aims to:
 - Create a visually accurate clone of the Claude.ai interface
-- Support light and dark mode theme switching
-- Implement "feels-like-real" functionality using Zustand to store mock data and manage state
-- Define clean data interfaces that could easily be migrated to a backend database
+- Implement realistic functionality using Zustand for mock data and state
+- Define clean data interfaces that could easily connect to a real backend
+- Follow good coding practices with centralised styling and type safety
 
-These objectives aim to deliver a user experience that closely mimics the real Claude.ai interface.
+## Technology Stack
 
-## Features
+- **Next.js**: React framework with App Router
+- **TypeScript**: Static type checking
+- **Tailwind CSS**: Utility-first styling
+- **shadcn/ui**: UI components ("New York" style, "Stone" palette)
+- **Heroicons**: Icon library
+- **Next Themes**: Light/dark mode switching
+- **Zustand**: State management with persistence
 
-UI "feels like real" functionality:
-- Chat page: primary interaction screen
-- Chats page: lists all chats
-- Project page: a project contains multiple chats
-- Projects pages: lists all projects
-- User Settings page: User profile and display settings light/dark
-- Modal drawer navigation: shared across all pages
+## Core Features
+
+| UI | Description | Reference |
+|---------|-------------|-----------|
+| Chat Interface | Primary conversation screen | [Screenshot](agent-docs/screenshots/chat.jpg) |
+| Chat History | List of all past conversations | [Screenshot](agent-docs/screenshots/chats.jpg) |
+| Project View | Single project with related chats | [Screenshot](agent-docs/screenshots/project.jpg) |
+| Projects List | All historical projects | [Screenshot](agent-docs/screenshots/projects.jpg) |
+| Settings | User profile and preferences | [Screenshot](agent-docs/screenshots/settings.jpg) |
+| Navigation | Modal drawer for app navigation | [Screenshot](agent-docs/screenshots/navigation.jpg) |
 
 ## Out of Scope
 - Authentication
-- Real-time chat functionality, that is no Anthropic API integration
-- Backend integration (but we'll define data interfaces that would work for Supabase later)
-
-## Experiment Success Criteria
-
-### Prototype Quality
-- [ ] A plausible clone of the Claude.ai interface
-- [ ] Supports theme switching (light/dark mode)
-- [ ] Provides realistic interface interactions
-- [ ] It "feels like real" thanks to Zustand
-
-### Workflow Effectiveness
-- [ ] Discovered how much to put into the intial prompt for v0.dev
-- [ ] Discovered which documents to create for agent context and guidance
-- [ ] Created templates for these docs (with descriptions and examples)
-- [ ] Discovered what is useful to put in the v0.dev's custom instruction
-- [ ] Proved that this workflow is repeatable by cloning another web app
-
-### Code Quality
-- [ ] Centralised theming implementation using Tailwind and shadcn/ui
-- [ ] Well-organised, modular UI components without hardcoding
-- [ ] Clean data interfaces that would facilitate database migration
-- [ ] Consistent state management patterns using Zustand
-
-### Next steps: Cursor
-- [ ] Pushed this project to GitHub, brought into Cursor, and made a few changes.
-- [ ] Re-created this project in Cursor from scratch, with imported UI components from v0.dev.
+- Real-time chat functionality (no AI API integration)
+- Backend database (using Zustand instead)
 
 ## Development Approach
 
-This application will be created with [v0.dev](https:v0.dev). Screenshots of [Claude.ai](https://claude.ai) will be provided to help generate the UI. The majority of the code will be generated by prompting.
+This app will be generated with [v0.dev](https://v0.dev) using Claude.ai [/agent-docs/screenshots](agent-docs/screenshots).
 
-### Data Interfaces
+### Data Management
 
-As there is no database, there is no need for a schema. However, data interfaces will be provided early on to v0.dev to enable Zustand.
+- **Data Interfaces**: Defined early for proper Zustand implementation
+- **Session Persistence**: Uses Zustand with `persist` middleware and sessionStorage
+- **Mock Data**: Simulates a database with initial mock data for the UI
+- **Session-Based**: Data persists until browser tab closes (no cross-tab persistence)
+- **Realistic UX**: Provides app-like experience without a backend
 
-### More on Zustand
+## Experiment Success Criteria
 
-**Zustand with Session Storage:**
 
-- **State Persistence**: Zustand, combined with the `persist` middleware using sessionStorage, provides:
-  - **User Data**: User profile information.
-  - **User Preferences**: Theme settings and other user preferences.
-  - **Chats & Projects**: Data for chats and projects.
-  
-  This data will persist until the browser tab is closed, ensuring your prototype feels like a real application.
+## Success Criteria
 
-- **Initial Mock Data**: Upon opening the app, Zustand will load initial mock data to simulate an existing database, which will be reset when the tab is closed.
+- [ ] Convincing Claude.ai interface clone with light/dark mode
+- [ ] Realistic interface interactions and user experience
 
-- **Session-Based Persistence**: 
-  - When you close the browser or tab, all persisted data will be lost. This mimics a typical session-based application behavior.
+### Prototype Quality
+- [ ] Convincing Claude.ai interface clone with light/dark mode
+- [ ] Realistic interface interactions and user experience
 
-- **Limitations**: There's no cross-tab persistence. If you open the app in another tab, it won't have access to the data from your previous session.
+### Workflow Effectiveness
+- [ ] Eficient technique for initial app generation
+- [ ] Effective agent documentation in `/agent-docs`
+- [ ] Reusable documentation templates for future projects
+- [ ] Repeatable workflow proven by cloning another web app
 
-This setup provides a straightforward way to manage state for prototyping, giving a realistic user experience without the need for a backend database.
+### Code Quality
+- [ ] Centralised theming with Tailwind and shadcn/ui
+- [ ] Modular, well-organized UI components
+- [ ] Clean data interfaces ready for backend integration
+- [ ] Consistent Zustand state management patterns
+
+### Next Steps: Courage for Cursor
+- [ ] Import project into Cursor IDE for enhancements and deployment
+- [ ] Recreate project in Cursor from scratch as a learning exercise
