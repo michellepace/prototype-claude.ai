@@ -16,7 +16,7 @@
 
 ## File Structure
 
-IMPORTANT: Implement the navigation drawer using EXACTLY this modular component approach:
+IMPORTANT: Implement the modal navigation drawer using EXACTLY this modular component approach:
 
 ```
 components/
