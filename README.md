@@ -23,14 +23,14 @@ A functional prototype clone of the [Claude.ai](https://claude.ai/) interface an
 
 ## Core Features
 
-| UI | Description | Reference |
+| UI | Description | Claude.ai Screenshots |
 |---------|-------------|-----------|
-| Chat Interface | Primary conversation screen | [Screenshot](agent-docs/screenshots/chat.jpg) |
-| Chat History | List of all past conversations | [Screenshot](agent-docs/screenshots/chats.jpg) |
-| Project View | Single project with related chats | [Screenshot](agent-docs/screenshots/project.jpg) |
-| Projects List | All historical projects | [Screenshot](agent-docs/screenshots/projects.jpg) |
-| Settings | User profile and preferences | [Screenshot](agent-docs/screenshots/settings.jpg) |
-| Navigation | Modal drawer for app navigation | [Screenshot](agent-docs/screenshots/navigation.jpg) |
+| Chat Interface | Primary conversation screen | [chat.jpg](agent-docs/screenshots/chat.jpg) |
+| Chat History | List of all past conversations | [chats.jpg](agent-docs/screenshots/chats.jpg) |
+| Project View | Single project with related chats | [project.jpg](agent-docs/screenshots/project.jpg) |
+| Projects List | All historical projects | [projects.jpg](agent-docs/screenshots/projects.jpg) |
+| Settings | User profile and preferences | [settings.jpg](agent-docs/screenshots/settings.jpg) |
+| Navigation | Modal drawer for app navigation | [navigation.jpg](agent-docs/screenshots/navigation.jpg) |
 | URL Routing | Direct links to chats and projects | N/A |
 
 ## Out of Scope
