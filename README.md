@@ -31,6 +31,7 @@ A functional prototype clone of the [Claude.ai](https://claude.ai/) interface an
 | Projects List | All historical projects | [Screenshot](agent-docs/screenshots/projects.jpg) |
 | Settings | User profile and preferences | [Screenshot](agent-docs/screenshots/settings.jpg) |
 | Navigation | Modal drawer for app navigation | [Screenshot](agent-docs/screenshots/navigation.jpg) |
+| URL Routing | Direct links to chats and projects | N/A |
 
 ## Out of Scope
 - Authentication
@@ -48,6 +49,7 @@ This app will be generated with [v0.dev](https://v0.dev) using the Claude.ai [in
 - **Session Persistence**: Data persists until browser tab closes (no cross-tab persistence)
 - **Mock Data**: Initialises with realistic sample data to demonstrate UI functionality
 - **Realistic UI**: Simulates complete app behaviour without 3rd party API integrations
+- **URL-based Navigation**: Enables direct linking to specific chats and projects via unique URLs (e.g., /chat/[id], /project/[id])
 
 ## Success Criteria
 
