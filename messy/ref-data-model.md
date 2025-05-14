@@ -1,11 +1,26 @@
-### Data Model
+# AI Chat Platform Data Model
 
-The application needs to implement the following data model. This model will initially use a Zustand store with the persist middleware using sessionStorage. But is designed to streamline the transition to a database like Supabase in the future:
+## Introduction
+
+This document defines the core data structures for a modern AI Chat platform prototype. The data model is designed with two key goals:
+
+1. **Initial Implementation**: To work seamlessly with Zustand state management and sessionStorage persistence for a "feels real" prototype without a backend database.
+
+2. **Future Migration**: To facilitate a smooth transition to a database like Supabase in the future by using proper relationships and standardized timestamp handling.
+
+All timestamp fields use the `ISODateString` type for consistent serialization and chronological sorting.
+
+## Data Model Specification
+
+The application needs to implement the following data model. This model will initially use a Zustand store with the persist middleware using sessionStorage but is designed to streamline the transition to a database like Supabase in the future:
 
 #### Project Structure
 
 ├── store/
 │   ├── index.ts
+│   ├── types.ts                 # Shared types like ISODateString
+│   ├── utils/
+│   │   └── dateUtils.ts         # Utilities for timestamp handling
 │   ├── slices/
 │   │   ├── userSlice.ts
 │   │   ├── chatSlice.ts
@@ -22,18 +37,26 @@ The application needs to implement the following data model. This model will ini
 #### Interfaces
 
 ```typescript
+// Shared types
+/** ISO 8601 date string (e.g., "2023-05-12T15:30:45.123Z") */
+type ISODateString = string;
+
+// Base entity with common timestamp fields
+interface BaseEntity {
+  createdAt: ISODateString;
+  updatedAt: ISODateString;
+}
+
 // Core entities
-interface User {
+interface User extends BaseEntity {
   id: string;
   email: string;
   displayName: string;
   avatarUrl?: string;
   plan: string;
-  createdAt: Date;
-  updatedAt: Date;
 }
 
-interface Project {
+interface Project extends BaseEntity {
   id: string;
   userId: string;
   name: string;
@@ -42,21 +65,17 @@ interface Project {
   isPrivate: boolean;
   isStarred: boolean;
   knowledgeFiles: KnowledgeFile[];
-  createdAt: Date;
-  updatedAt: Date;
 }
 
-interface QuickPrompt {
+interface QuickPrompt extends BaseEntity {
   id: string;
   category: "write" | "learn" | "code" | "lifestuff"; // The type of menu
   title: string;
   icon?: string;
   order: number; // For controlling the display order in the list
-  createdAt: Date;
-  updatedAt: Date;
 }
 
-interface Chat {
+interface Chat extends BaseEntity {
   id: string;
   userId: string;
   projectId?: string;
@@ -64,72 +83,58 @@ interface Chat {
   modelId: string;
   isStarred: boolean;
   isLocked: boolean;
-  lastMessageAt: Date;
-  createdAt: Date;
-  updatedAt: Date;
+  lastMessageAt: ISODateString;
 }
 
-interface Message {
+interface Message extends BaseEntity {
   id: string;
   chatId: string;
   role: "user" | "assistant";
   content: string;
-  timestamp: Date;
   attachments?: Attachment[];
   modelId: string;
-  createdAt: Date;
 }
 
 // Supporting entities
-interface Model {
+interface Model extends BaseEntity {
   id: string;
   name: string;
   description: string;
   isDefault: boolean;
-  createdAt: Date;
-  updatedAt: Date;
 }
 
-interface Integration {
+interface Integration extends BaseEntity {
   id: string;
   userId: string;
   type: "google_drive" | "gmail" | "calendar" | "github";
   name: string;
   isConnected: boolean;
   icon: string;
-  createdAt: Date;
-  updatedAt: Date;
 }
 
-interface Settings {
+interface Settings extends BaseEntity {
   id: string;
   userId: string;
   theme: "light" | "dark" | "system";
   language: string;
   defaultModel: string;
-  createdAt: Date;
-  updatedAt: Date;
 }
 
-// You'll also want to add timestamps to these referenced interfaces
-interface KnowledgeFile {
+interface KnowledgeFile extends BaseEntity {
   id: string;
   projectId: string;
   name: string;
   type: string;
   size: number;
   url: string;
-  createdAt: Date;
-  updatedAt: Date;
 }
 
-interface Attachment {
+interface Attachment extends BaseEntity {
   id: string;
   messageId: string;
   type: string;
   name: string;
   url: string;
-  createdAt: Date;
 }
 ```
 
