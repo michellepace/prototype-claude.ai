@@ -27,7 +27,7 @@ A functional prototype clone of the [Claude.ai](https://claude.ai/) interface an
 |---------|-------------|-----------|-----------|
 | New page | Root page, new chats are started here | [new.jpg](agent-docs/screenshots/new.jpg) and [new-detailed.jpg](agent-docs/screenshots/new-detailed.jpg)| `https://claude.ai/new`|
 | Chat page | Thread of chat messages | [chat.jpg](agent-docs/screenshots/chat.jpg) | `https://claude.ai/chat/afec3c19-17d2-45c0-ba5b-d93a8e04e390`|
-| Chat History | List of all past conversations | [chats.jpg](agent-docs/screenshots/chats.jpg) |
+| Recents page | Lists all chat conversations | [recents.jpg](agent-docs/screenshots/recents.jpg) | `https://claude.ai/recents`|
 | Project View | Single project with related chats | [project.jpg](agent-docs/screenshots/project.jpg) |
 | Projects List | All historical projects | [projects.jpg](agent-docs/screenshots/projects.jpg) |
 | Settings | User profile and preferences | [settings.jpg](agent-docs/screenshots/settings.jpg) |
