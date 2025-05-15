@@ -31,8 +31,12 @@ A functional prototype clone of the [Claude.ai](https://claude.ai/) interface an
 | Project page | A project contains many chats | [project.jpg](agent-docs/screenshots/project.jpg) | `https://claude.ai/project/01968c4c-69b2-71e8-9342-3cae65916336`|
 | Projects page | Lists all projects | [projects.jpg](agent-docs/screenshots/projects.jpg) | `https://claude.ai/projects`|
 | Settings | User profile and preferences | [settings.jpg](agent-docs/screenshots/settings.jpg) |
-| Navigation | Modal drawer for app navigation | [navigation.jpg](agent-docs/screenshots/navigation.jpg) |
-| URL Routing | Direct links to chats and projects | N/A |
+| Navigation drawer| Modal drawer shared across all pages| [navigation.jpg](agent-docs/screenshots/navigation.jpg) | n/a|
+
+Routing Note (UUID):
+- Every chat and project has an unique url (UUID)
+- This provides a direct link for every chat and project
+
 
 ## Out of Scope
 - Authentication
