@@ -21,24 +21,25 @@ A functional prototype clone of the [Claude.ai](https://claude.ai/) interface an
 - **Next Themes**: Light/dark mode switching
 - **Zustand**: State management with persistence
 
-## Core UI Features (and Routing)
+## Core User Interface and Routes
 
-| UI | Description | Claude.ai Screenshots | Claude.ai Example Routing |
-|---------|-------------|-----------|-----------|
-| Navigation | Modal drawer shared across all pages| [navigation.jpg](agent-docs/screenshots/navigation.jpg) | n/a |
-| New page | Root page, new chats are started here | [new.jpg](agent-docs/screenshots/new.jpg),  [new-detailed.jpg](agent-docs/screenshots/new-detailed.jpg)| `https://claude.ai/new` |
-| Chat page | Thread of chat messages | [chat.jpg](agent-docs/screenshots/chat.jpg) | `https://claude.ai/chat/afec3c19-17d2-45c0-ba5b-d93a8e04e390` |
-| Recents page | Lists all chat conversations | [recents.jpg](agent-docs/screenshots/recents.jpg) | `https://claude.ai/recents` |
-| Project page | A project contains many chats | [project.jpg](agent-docs/screenshots/project.jpg) | `https://claude.ai/project/01968c4c-69b2-71e8-9342-3cae65916336` |
-| Projects page | Lists all projects | [projects.jpg](agent-docs/screenshots/projects.jpg) | `https://claude.ai/projects` |
-| Settings page:<br/> Profile| Set name, preferences, etc. | [settings.jpg](agent-docs/screenshots/settings.jpg) | `https://claude.ai/settings/profile`<br> Note: `/settings/` implements server-side redirect to `/settings/profile` |
-| Settings page:<br/> Appearance | Set light/dark mode, chat font | [settings.jpg](agent-docs/screenshots/settings.jpg) | `https://claude.ai/settings/appearance` |
-| Settings page:<br/> Account | Logout, Delete account | [settings.jpg](agent-docs/screenshots/settings.jpg) | `https://claude.ai/settings/account` |
-| Settings page:<br/> Data Privacy Controls | Privacy statement, etc. | [settings.jpg](agent-docs/screenshots/settings.jpg) | `https://claude.ai/settings/data-privacy-controls` |
+Type | Name | Description | Reference Screenshot | URL Pattern |
+|---------|---------|-------------|-----------|-----------|
+| UI Component | Navigation | Shared modal drawer (all pages) | [navigation.jpg](agent-docs/screenshots/navigation.jpg) | n/a |
+| Route | New | Starting page for conversations | [new.jpg](agent-docs/screenshots/new.jpg),  [new-detailed.jpg](agent-docs/screenshots/new-detailed.jpg)| `https://claude.ai/new` |
+| Route | Chat | Conversation with chat messages | [chat.jpg](agent-docs/screenshots/chat.jpg) | `https://claude.ai/chat/{uuid}` |
+| Route | Recents | Lists all chat conversations | [recents.jpg](agent-docs/screenshots/recents.jpg) | `https://claude.ai/recents` |
+| Route | Project | A project contains many chats | [project.jpg](agent-docs/screenshots/project.jpg) | `https://claude.ai/project/{uuid}` |
+| Route | Projects | Lists all projects | [projects.jpg](agent-docs/screenshots/projects.jpg) | `https://claude.ai/projects` |
+| Route | Settings | Parent route with shared tab navigation component | N/A | `https://claude.ai/settings` (redirects to profile) |
+| Route | ↳ Profile | User identity and preferences configuration | [settings.jpg](agent-docs/screenshots/settings.jpg) | `https://claude.ai/settings/profile` |
+| Route | ↳ Appearance | Theme and visual preferences | [settings.jpg](agent-docs/screenshots/settings.jpg) | `https://claude.ai/settings/appearance` |
+| Route | ↳ Account | Account management and logout | [settings.jpg](agent-docs/screenshots/settings.jpg) | `https://claude.ai/settings/account` |
+| Route | ↳ Data Privacy | Privacy controls and settings | [settings.jpg](agent-docs/screenshots/settings.jpg) | `https://claude.ai/settings/data-privacy-controls` |
 
-Note: Routing for individual Chats and Projects
-- Every Chat and Project has an unique url (UUID)
-- Meaning a chat and project is accessible via a direct link
+Notes:
+1. Individual Chat and Project routes use unique UUIDs, enabling direct access via shareable links.
+2. All settings routes share the same screenshot as they maintain the same navigation UI with different content areas.
 
 ## Out of Scope
 - Authentication
