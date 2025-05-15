@@ -28,8 +28,8 @@ A functional prototype clone of the [Claude.ai](https://claude.ai/) interface an
 | New page | Root page, new chats are started here | [new.jpg](agent-docs/screenshots/new.jpg) and [new-detailed.jpg](agent-docs/screenshots/new-detailed.jpg)| `https://claude.ai/new`|
 | Chat page | Thread of chat messages | [chat.jpg](agent-docs/screenshots/chat.jpg) | `https://claude.ai/chat/afec3c19-17d2-45c0-ba5b-d93a8e04e390`|
 | Recents page | Lists all chat conversations | [recents.jpg](agent-docs/screenshots/recents.jpg) | `https://claude.ai/recents`|
-| Project View | Single project with related chats | [project.jpg](agent-docs/screenshots/project.jpg) |
-| Projects List | All historical projects | [projects.jpg](agent-docs/screenshots/projects.jpg) |
+| Project page | A project contains many chats | [project.jpg](agent-docs/screenshots/project.jpg) | `https://claude.ai/project/01968c4c-69b2-71e8-9342-3cae65916336`|
+| Projects page | Lists all projects | [projects.jpg](agent-docs/screenshots/projects.jpg) | `https://claude.ai/projects`|
 | Settings | User profile and preferences | [settings.jpg](agent-docs/screenshots/settings.jpg) |
 | Navigation | Modal drawer for app navigation | [navigation.jpg](agent-docs/screenshots/navigation.jpg) |
 | URL Routing | Direct links to chats and projects | N/A |
