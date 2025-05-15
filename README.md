@@ -23,9 +23,9 @@ A functional prototype clone of the [Claude.ai](https://claude.ai/) interface an
 
 ## Core Features
 
-| UI | Description | Claude.ai Screenshots |
-|---------|-------------|-----------|
-| Chat Interface | Primary conversation screen | [chat.jpg](agent-docs/screenshots/chat.jpg) |
+| UI | Description | Claude.ai Screenshots | Claude.ai Routing |
+|---------|-------------|-----------|-----------|
+| New page | Root page, new chats are started here | [new.jpg](agent-docs/screenshots/new.jpg) and [new-detailed.jpg](agent-docs/screenshots/new-detailed.jpg)| `https://claude.ai/new`|
 | Chat History | List of all past conversations | [chats.jpg](agent-docs/screenshots/chats.jpg) |
 | Project View | Single project with related chats | [project.jpg](agent-docs/screenshots/project.jpg) |
 | Projects List | All historical projects | [projects.jpg](agent-docs/screenshots/projects.jpg) |
