@@ -1,36 +1,22 @@
 // Core Type Definitions
 // ===================================
 
+// Shared types
 /** ISO 8601 date string (e.g., "2023-05-12T15:30:45.123Z") */
 export type ISODateString = string;
 
-/**
- * Base entity with common timestamp fields for all entities
- * Used for standardized creation/update tracking and sorting
- */
+// Base entity with common timestamp fields
 export interface BaseEntity {
   createdAt: ISODateString;
   updatedAt: ISODateString;
 }
 
-// Core Data Interfaces
-// ===================================
-
-/**
- * User entity representing the application user
- */
+// Core entities
 export interface User extends BaseEntity {
   id: string;
   email: string;
-  fullName: string; // "Full name" from Profile settings
-  displayName: string; // "What should we call you?" from Profile settings
-  workDescription?: string; // "What best describes your work?" from Profile settings
-  customInstructions?: string; // "What personal preferences should Claude consider" from Profile settings
 }
 
-/**
- * Project entity representing a collection of related chats
- */
 export interface Project extends BaseEntity {
   id: string;
   userId: string;
@@ -40,23 +26,17 @@ export interface Project extends BaseEntity {
   isArchived: boolean;
 }
 
-/**
- * Chat entity representing a conversation thread
- */
 export interface Chat extends BaseEntity {
   id: string;
   userId: string;
-  projectId?: string; // Optional: Chats can exist without belonging to a project
+  projectId?: string;
   name: string; // Auto-generated from first message (max 90 chars) or from quick prompt
-  modelId: string; // Reference to the AI model used for this chat
+  modelId: string;
   isStarred: boolean;
   isArchived: boolean;
-  lastMessageAt: ISODateString; // For sorting by recent activity
+  lastMessageAt: ISODateString;
 }
 
-/**
- * Message entity representing a single exchange in a chat
- */
 export interface Message extends BaseEntity {
   id: string;
   chatId: string;
@@ -64,9 +44,6 @@ export interface Message extends BaseEntity {
   content: string;
 }
 
-/**
- * AI Model entity representing available Claude models
- */
 export interface Model extends BaseEntity {
   id: string;
   name: string; // e.g., "Claude 3.7 Sonnet"
@@ -74,35 +51,43 @@ export interface Model extends BaseEntity {
   isDefault?: boolean; // Flag for the default selected model
 }
 
-/**
- * QuickPrompt entity representing predefined prompt templates
- */
 export interface QuickPrompt extends BaseEntity {
   id: string;
-  category: "write" | "learn" | "code" | "lifestuff"; // The type of prompt category
+  category: "write" | "learn" | "code" | "lifestuff";
   name: string; // Display name shown in the UI
   chatName: string; // What the chat will be named when using this prompt
   promptContent: string; // The actual prompt text to be sent
   order: number; // For controlling the display order in the list
 }
 
-/**
- * UserSettings entity for persisting user preferences
- */
+// All UserSettings a user can configure in the app
 export interface UserSettings extends BaseEntity {
   id: string;
   userId: string;
+  fullName: string;
+  displayName: string;
+  workDescription?: string;
+  customInstructions?: string;
+  artefacts: boolean;
+  analysisTool: boolean;
   colorMode: "light" | "dark" | "system";
   chatFont: "default" | "system" | "dyslexic";
   useLocationMetadata: boolean;
 }
 
+export interface UserSettingsIntegration extends BaseEntity {
+  id: string;
+  userId: string;
+  type: "google_drive" | "gmail" | "calendar" | "github";
+  name: string;
+  isConnected: boolean;
+  icon: string;
+}
+
 // Helper Types
 // ===================================
 
-/**
- * Chat with additional information for display in lists
- */
+// Chat with additional information for display in lists
 export interface ChatWithDetails extends Chat {
   lastMessage?: {
     content: string;
@@ -114,9 +99,7 @@ export interface ChatWithDetails extends Chat {
   };
 }
 
-/**
- * Project with additional information for display in lists
- */
+// Project with additional information for display in lists
 export interface ProjectWithDetails extends Project {
   chatCount: number;
   lastActivity?: ISODateString;
