@@ -300,5 +300,3 @@ export const formatRelativeTime = (isoString: ISODateString): string => {
 - The lastMessageAt timestamp in Chat is used for sorting by recent activity
 - Models have an isDefault flag to indicate the default selection for new chats
 - QuickPrompts are organized by category and ordered within each category
-
-test-horse.
