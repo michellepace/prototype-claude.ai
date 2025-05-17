@@ -153,22 +153,35 @@ This starting structure represents the foundational implementation detailed in s
 
 ```
 store/
-├── index.ts              # Main store with persist middleware
-├── types.ts              # Shared types including ISODateString
+├── index.ts                 # Main store with persist middleware
+├── types.ts                 # Shared types including ISODateString
 ├── utils/
-│   └── dateUtils.ts      # Includes createISODate, sortByTimestamp, formatRelativeTime
+│   ├── dateUtils.ts         # Includes createISODate, sortByTimestamp, formatRelativeTime
+│   └── (...)                # Additional utilities as needed
 ├── slices/
-│   ├── userSlice.ts      # User data and actions
-│   ├── chatSlice.ts      # Chat conversations and messages
-│   ├── projectSlice.ts   # Project management
-│   └── uiSlice.ts        # UI state (sidebar, active entities)
+│   ├── userSlice.ts         # System-managed user data (id, email)
+│   ├── userSettingsSlice.ts # User-editable settings and preferences
+│   ├── chatSlice.ts         # Chat conversations and messages
+│   ├── projectSlice.ts      # Projects contain many chats
+│   ├── modelSlice.ts        # AI model configurations
+│   ├── quickPromptSlice.ts  # Quick prompt templates
+│   ├── uiSlice.ts           # UI state (sidebar, active entities)
+│   └── (...)                # Additional slices as needed
+├── hooks/
+│   ├── useStarredProjects.ts # Custom hook for starred projects
+│   ├── useRecentChats.ts     # Custom hook for chat lists
+│   ├── useUserSettings.ts    # Custom hook for user settings
+│   ├── useProjects.ts        # Custom hook for project management
+│   └── (...)                 # Additional hooks as needed
 └── initialData/
-    ├── users.ts          # Default user
-    ├── chats.ts          # Sample chats
-    ├── messages.ts       # Sample messages
-    ├── projects.ts       # Sample projects
-    ├── models.ts         # Available AI models
-    └── quickPrompts.ts   # Predefined quick prompts
+    ├── users.ts             # Mock user (no authentication)
+    ├── userSettings.ts      # Initial user settings
+    ├── chats.ts             # Initial chat data
+    ├── messages.ts          # Initial message data
+    ├── projects.ts          # Initial project data
+    ├── models.ts            # Initial model data
+    ├── quickPrompts.ts      # Initial quick prompt data
+    └── (...)                # Additional initial data as needed
 ```
 
 ### Store Interface
@@ -268,16 +281,170 @@ export const formatRelativeTime = (isoString: ISODateString): string => {
 
 **Note:** These three utilities form the essential core for timestamp management. Additional utility functions may be added as the application grows.
 
+### Implementation Pattern Example
+
+The following example demonstrates the 'Starred Projects' functionality, showing how slice, hook, and component layers work together using Immer middleware. Use this implementation pattern as a template for each entity type in your application.
+
+#### 1. Slice Implementation (with Immer)
+
+This slice defines the core state and actions for managing projects, using Immer to simplify state updates.
+
+```typescript
+// File: store/slices/projectSlice.ts
+import { StateCreator } from 'zustand';
+import { immer } from 'zustand/middleware/immer';
+import { nanoid } from 'nanoid';
+import { AppStore } from '../types';
+import { Project } from '../types';
+import { createISODate } from '../utils/dateUtils';
+
+export const createProjectSlice: StateCreator<
+  AppStore,
+  [['zustand/immer', never]],
+  [],
+  Pick<AppStore, 'projects' | 'createProject' | 'toggleProjectStar'>
+> = immer((set, get) => ({
+  // State
+  projects: {},
+  
+  // Actions
+  createProject: (name, description) => {
+    const id = nanoid();
+    const now = createISODate();
+    const userId = get().currentUserId!;
+    
+    // With Immer, we can directly modify "draft state"
+    set((state) => {
+      state.projects[id] = {
+        id,
+        userId,
+        name,
+        description,
+        isStarred: false,
+        isArchived: false,
+        createdAt: now,
+        updatedAt: now
+      };
+    });
+    
+    return id;
+  },
+  
+  toggleProjectStar: (id) => {
+    // Simple toggle with Immer
+    set((state) => {
+      if (state.projects[id]) {
+        // Toggle the star status
+        state.projects[id].isStarred = !state.projects[id].isStarred;
+        
+        // Update the timestamp (for sorting)
+        state.projects[id].updatedAt = createISODate();
+      }
+    });
+  }
+}));
+```
+
+#### 2. Custom Hook Implementation
+
+This custom hook selects, filters and sorts projects from the store, returning only what components need.
+
+```typescript
+// File: hooks/useStarredProjects.ts
+import { useStore } from '../store';
+import { sortByTimestamp } from '../store/utils/dateUtils';
+
+// Custom hook for accessing starred projects
+export function useStarredProjects() {
+  return useStore((state) => {
+    // 1. Get all projects for the current user
+    const userProjects = Object.values(state.projects)
+      .filter(project => 
+        project.userId === state.currentUserId && 
+        project.isStarred && 
+        !project.isArchived
+      );
+    
+    // 2. Sort by lastUpdated (newest first)
+    const sortedProjects = sortByTimestamp(userProjects, 'updatedAt');
+    
+    // 3. Return both data and actions
+    return {
+      starredProjects: sortedProjects,
+      toggleStar: state.toggleProjectStar
+    };
+  });
+}
+```
+
+#### 3. Component Usage Pattern
+
+Components consume the custom hook to access both data and actions without direct store dependencies.
+
+```typescript
+// File: Usage Pattern for Component
+
+/*
+ * How to use the useStarredProjects hook in your components
+ * This pattern can be integrated with any UI library or component structure
+ */
+
+// Example 1: Basic usage in a navigation drawer section
+function StarredProjectsSection() {
+  // The hook provides both data and actions
+  const { starredProjects, toggleStar } = useStarredProjects();
+  
+  // Optional: Skip rendering if empty
+  if (starredProjects.length === 0) return null;
+  
+  // Integrate with your own component structure and styling
+  return (
+    <YourSectionComponent title="Starred Projects">
+      {starredProjects.map(project => (
+        <YourProjectItemComponent 
+          key={project.id}
+          project={project}
+          onStarClick={() => toggleStar(project.id)}
+        />
+      ))}
+    </YourSectionComponent>
+  );
+}
+```
+
+#### Implementation Notes
+
+1. **Slice Pattern**:
+   - Use Immer middleware to simplify state updates
+   - Always update timestamps when entities change
+   - Check entity existence before updates
+   - Keep actions focused on single responsibilities
+
+2. **Hook Pattern**:
+   - Create separate hooks for different data access patterns
+   - Filter and sort data in the hooks, not in components
+   - Return only what components actually need
+   - Combine related data and actions in the return object
+
+3. **Component Pattern**:
+   - Use hooks to access data and actions
+   - Keep components focused on presentation
+   - Avoid direct store access in components
+   - Extract reusable patterns into custom hooks
+
 ## Best Practices
 
 ### State Management
-- **Use Immer middleware** for nested state updates in your Zustand store to simplify complex state mutations while maintaining immutability, especially for collections of entities
+
+- **Use Immer middleware** to simplify state mutations while preserving immutability, especially for entity collections
 - Always use the three core timestamp utility functions for consistent date handling
 - Structure actions to mirror future API endpoints to simplify database migration
 
 ### Development Approach
+
 - Use TypeScript interfaces from types.ts for type safety and consistent entity handling
 - Define actions within each slice (e.g., addChat, updateUser) with clear responsibilities
+- **Follow the Slice + Hook + Component pattern** from the Starred Projects example for clean separation of concern
 - Create custom selector hooks for components to access only needed state
 - Extend the utility function collection as new needs emerge during development
 
