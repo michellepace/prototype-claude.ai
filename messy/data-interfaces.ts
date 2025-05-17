@@ -1,7 +1,8 @@
 // Core Type Definitions
 // ===================================
 
-// Shared types
+/** Shared types **/
+
 /** ISO 8601 date string (e.g., "2023-05-12T15:30:45.123Z") */
 export type ISODateString = string;
 
@@ -11,7 +12,8 @@ export interface BaseEntity {
   updatedAt: ISODateString;
 }
 
-// Core entities
+/** Core entities **/
+
 export interface User extends BaseEntity {
   id: string;
   email: string;
