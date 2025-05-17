@@ -18,8 +18,11 @@ The following sections detail the TypeScript interfaces, entity relationships, Z
 
 All timestamp fields use the `ISODateString` type for consistent serialization and chronological sorting.
 
+#### Core Types
+
 ```typescript
-// Shared types
+/** Shared types **/
+
 /** ISO 8601 date string (e.g., "2023-05-12T15:30:45.123Z") */
 export type ISODateString = string;
 
@@ -29,7 +32,8 @@ export interface BaseEntity {
   updatedAt: ISODateString;
 }
 
-// Core entities
+/** Core entities **/
+
 export interface User extends BaseEntity {
   id: string;
   email: string;
@@ -103,7 +107,7 @@ export interface UserSettingsIntegration extends BaseEntity {
 }
 ```
 
-**Helper Types:**
+#### Helper Types
 
 These specialized types support UI requirements for displaying items in lists with additional context:
 
