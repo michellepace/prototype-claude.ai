@@ -12,7 +12,7 @@ The application implements the following data model. This model uses a Zustand s
 
 ## Data Model
 
-### Interfaces
+### Data Interfaces (TypeScript)
 
 All timestamp fields use the `ISODateString` type for consistent serialization and chronological sorting.
 
@@ -125,7 +125,7 @@ export interface ProjectWithDetails extends Project {
 }
 ```
 
-### Key Relationships
+### Data Relationships
 
 - **User and Projects**: A User has many Projects (one-to-many)
 - **User and Chats**: A User has many Chats (one-to-many)
@@ -135,11 +135,11 @@ export interface ProjectWithDetails extends Project {
 - **User and Settings**: A User has one set of UserSettings (one-to-one)
 - **User and Integrations**: A User can connect multiple UserSettingsIntegrations (one-to-many)
 
-## Zustand State Management
+## State Management (Zustand)
 
 The application will use a single Zustand store with persist middleware using sessionStorage that resets on browser/tab close:
 
-### Store Structure
+### Project Structure
 
 Follow this project structure as a guide:
 
