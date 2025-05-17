@@ -2,13 +2,15 @@
 
 ## Introduction
 
-This document defines the core data structures for a Claude.ai interface prototype. The data model is designed with two key goals:
+This document outlines the core data structures and Zustand state management implementation (Zustand being a lightweight state management library for React) for a Claude.ai interface prototype in our Next.js application. The architecture is designed with two complementary goals:
 
-1. **Initial Implementation**: To work seamlessly with Zustand state management and sessionStorage persistence for a "feels real" prototype without a backend database.
+1. **Initial Implementation**: To provide a realistic user experience using Zustand stores with sessionStorage persistence for mock data, creating a functional prototype without requiring a backend database.
 
-2. **Future Migration**: To facilitate a smooth transition to a database like Supabase in the future by using proper relationships and standardized timestamp handling.
+2. **Future Migration**: To facilitate smooth transition to a database solution like Supabase through carefully designed entity relationships and standardised timestamp handling.
 
-The application implements the following data model. This model uses a Zustand store with the persist middleware using sessionStorage but is designed to streamline the transition to a database like Supabase in the future:
+This approach delivers immediate business value by accelerating development cycles while ensuring the codebase remains adaptable without costly refactoring.
+
+The following sections detail the TypeScript interfaces, entity relationships, Zustand store structure, and business rules that support this dual-purpose architecture.
 
 ## Data Model
 
