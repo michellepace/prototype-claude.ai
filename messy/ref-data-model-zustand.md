@@ -143,33 +143,35 @@ export interface ProjectWithDetails extends Project {
 
 ## State Management (Zustand)
 
-The application will use a single Zustand store with persist middleware using sessionStorage that resets on browser/tab close:
+The application will use a single Zustand store with persist middleware using sessionStorage that resets on browser/tab close. 
+
+**Note:** The following implementation details establish the core foundation and patterns to build upon, not a complete solution. The state management will evolve as the application grows.
 
 ### Project Structure
 
-Follow this project structure as a guide:
+This starting structure represents the foundational implementation detailed in subsequent sections:
 
 ```
 store/
-├── index.ts                # Main store with persist middleware
-├── types.ts                # Shared types including ISODateString
+├── index.ts              # Main store with persist middleware
+├── types.ts              # Shared types including ISODateString
 ├── utils/
-│   └── dateUtils.ts        # Utilities for timestamp handling
+│   └── dateUtils.ts      # Includes createISODate, sortByTimestamp, formatRelativeTime
 ├── slices/
-│   ├── userSlice.ts        # User data and actions
-│   ├── chatSlice.ts        # Chat conversations and messages
-│   ├── projectSlice.ts     # Project management
-│   └── uiSlice.ts          # UI state (sidebar, active entities)
+│   ├── userSlice.ts      # User data and actions
+│   ├── chatSlice.ts      # Chat conversations and messages
+│   ├── projectSlice.ts   # Project management
+│   └── uiSlice.ts        # UI state (sidebar, active entities)
 └── initialData/
-    ├── users.ts            # Default user
-    ├── chats.ts            # Sample chats
-    ├── messages.ts         # Sample messages
-    ├── projects.ts         # Sample projects
-    ├── models.ts           # Available AI models
-    └── quickPrompts.ts     # Predefined quick prompts
+    ├── users.ts          # Default user
+    ├── chats.ts          # Sample chats
+    ├── messages.ts       # Sample messages
+    ├── projects.ts       # Sample projects
+    ├── models.ts         # Available AI models
+    └── quickPrompts.ts   # Predefined quick prompts
 ```
 
-### Store Inteface
+### Store Interface
 
 ```typescript
 // Store interface for the Zustand state
@@ -220,14 +222,64 @@ export interface AppStore {
 }
 ```
 
+### Core Utilities
+
+The application requires several utility functions to support timestamp operations. Implement these three essential utilities in `store/utils/dateUtils.ts`:
+
+```typescript
+// Creates a new ISODateString for the current time
+export const createISODate = (): ISODateString => new Date().toISOString();
+
+// Sorts entities by timestamp in reverse chronological order (newest first)
+export const sortByTimestamp = <T extends BaseEntity & { lastMessageAt?: ISODateString }>(
+  items: T[], 
+  property: 'createdAt' | 'updatedAt' | 'lastMessageAt' = 'updatedAt'
+): T[] => {
+  return [...items].sort((a, b) => {
+    const timeA = property === 'lastMessageAt' && a.lastMessageAt 
+      ? a.lastMessageAt : a[property === 'lastMessageAt' ? 'updatedAt' : property];
+    const timeB = property === 'lastMessageAt' && b.lastMessageAt 
+      ? b.lastMessageAt : b[property === 'lastMessageAt' ? 'updatedAt' : property];
+    return new Date(timeB).getTime() - new Date(timeA).getTime();
+  });
+};
+
+// Formats timestamps as relative time strings (e.g., "2 hours ago", "1 day ago")
+export const formatRelativeTime = (isoString: ISODateString): string => {
+  const now = new Date();
+  const date = new Date(isoString);
+  const diffMs = now.getTime() - date.getTime();
+  
+  const diffSeconds = Math.floor(diffMs / 1000);
+  const diffMinutes = Math.floor(diffSeconds / 60);
+  const diffHours = Math.floor(diffMinutes / 60);
+  const diffDays = Math.floor(diffHours / 24);
+  const diffMonths = Math.floor(diffDays / 30);
+  const diffYears = Math.floor(diffDays / 365);
+  
+  if (diffMinutes < 1) return 'just now';
+  if (diffHours < 1) return `${diffMinutes} ${diffMinutes === 1 ? 'minute' : 'minutes'} ago`;
+  if (diffDays < 1) return `${diffHours} ${diffHours === 1 ? 'hour' : 'hours'} ago`;
+  if (diffDays < 30) return `${diffDays} ${diffDays === 1 ? 'day' : 'days'} ago`;
+  if (diffYears < 1) return `${diffMonths} ${diffMonths === 1 ? 'month' : 'months'} ago`;
+  return `${diffYears} ${diffYears === 1 ? 'year' : 'years'} ago`;
+};
+```
+
+**Note:** These three utilities form the essential core for timestamp management. Additional utility functions may be added as the application grows.
+
 ## Best Practices
 
-- Use TypeScript interfaces from types.ts for type safety
-- Define actions within each slice (e.g., addChat, updateUser)
-- Always use the utility functions for creating/formatting ISO date strings
-- Use immer middleware for more intuitive state updates when needed
-- Create custom selector hooks for components to access only needed state
+### State Management
+- **Use Immer middleware** for nested state updates in your Zustand store to simplify complex state mutations while maintaining immutability, especially for collections of entities
+- Always use the three core timestamp utility functions for consistent date handling
 - Structure actions to mirror future API endpoints to simplify database migration
+
+### Development Approach
+- Use TypeScript interfaces from types.ts for type safety and consistent entity handling
+- Define actions within each slice (e.g., addChat, updateUser) with clear responsibilities
+- Create custom selector hooks for components to access only needed state
+- Extend the utility function collection as new needs emerge during development
 
 ## Appendix: Business Rules
 
