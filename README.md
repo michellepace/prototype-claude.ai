@@ -25,7 +25,7 @@ A functional prototype clone of the [Claude.ai](https://claude.ai/) interface an
 
 Type | Name | Description | Reference Screenshot | URL Pattern |
 |---------|---------|-------------|-----------|-----------|
-| UI Component | Navigation | Shared modal drawer (all pages) | [navigation.jpg](agent-docs/screenshots/navigation.jpg) | n/a |
+| UI | Navigation | Modal Drawer Component shared for all pages | [navigation.jpg](agent-docs/screenshots/navigation.jpg) | n/a |
 | Route | New | Starting page for conversations | [new.jpg](agent-docs/screenshots/new.jpg),  [new-detailed.jpg](agent-docs/screenshots/new-detailed.jpg)| `https://claude.ai/new` |
 | Route | Chat | Conversation with chat messages | [chat.jpg](agent-docs/screenshots/chat.jpg) | `https://claude.ai/chat/{uuid}` |
 | Route | Recents | Lists all chat conversations | [recents.jpg](agent-docs/screenshots/recents.jpg) | `https://claude.ai/recents` |
