@@ -1,3 +1,8 @@
+To be completed
+
+
+## Rough Notes
+
 Settings section: Four separate pages with shared navigation tabs, implemented as nested routes in the application architecture. Each page has its own URL while maintaining visual consistency through persistent tab navigation.
 
 | UI | Description | Claude.ai Screenshots | Claude.ai Example Routing |
