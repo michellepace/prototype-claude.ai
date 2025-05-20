@@ -2,7 +2,7 @@
 
 ## Visual Reference
 
-![Modal Navigation Drawer with States and Interactions](/agent-docs/screenshots/navigation.jpg)
+![Modal Navigation Drawer with States and Interactions](../reference-ui/navigation.jpg)
 
 *Reference implementation showing key states:*
 1. Nav Collapsed on Chat page (root)
