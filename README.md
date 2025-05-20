@@ -21,21 +21,24 @@ A functional prototype clone of the [Claude.ai](https://claude.ai/) interface an
 - **Next Themes**: Light/dark mode switching
 - **Zustand**: State management with persistence
 
-## Core User Interface and Routes
+## Priortised Feature Roadmap
 
-Type | Name | Description | Reference UI | URL Pattern |
+Features listed in order of priority for implementation:
+
+| Type | Name | Description | Reference UI | URL Pattern |
 |---------|---------|-------------|-----------|-----------|
-| UI | Navigation | Modal Drawer Component shared for all pages | [navigation.jpg](agent-docs/reference-ui/navigation.jpg) | n/a |
-| Route | New | Starting page for conversations | [new.jpg](agent-docs/reference-ui/new.jpg),  [new-detailed.jpg](agent-docs/reference-ui/new-detailed.jpg)| `https://claude.ai/new` |
-| Route | Chat | Conversation with chat messages | [chat.jpg](agent-docs/reference-ui/chat.jpg) | `https://claude.ai/chat/{uuid}` |
-| Route | Recents | Lists all chat conversations | [recents.jpg](agent-docs/reference-ui/recents.jpg) | `https://claude.ai/recents` |
-| Route | Project | A project contains many chats | [project.jpg](agent-docs/reference-ui/project.jpg) | `https://claude.ai/project/{uuid}` |
-| Route | Projects | Lists all projects | [projects.jpg](agent-docs/reference-ui/projects.jpg) | `https://claude.ai/projects` |
-| Route | Settings | Parent route with shared tab navigation component | N/A | `https://claude.ai/settings` (redirects to profile) |
-| Route | ↳ Profile | User identity and preferences configuration | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `https://claude.ai/settings/profile` |
-| Route | ↳ Appearance | Theme and visual preferences | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `https://claude.ai/settings/appearance` |
-| Route | ↳ Account | Account management and logout | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `https://claude.ai/settings/account` |
-| Route | ↳ Data Privacy | Privacy controls and settings | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `https://claude.ai/settings/data-privacy-controls` |
+| n/a | [Foundational](./agent-docs/features/foundational.md) | Base Next.js project with theming and light/dark mode | n/a | `https://claude.ai` |
+| UI | [Navigation](./agent-docs/features/navigation.md) | Modal Drawer Component shared for all pages | [navigation.jpg](agent-docs/reference-ui/navigation.jpg) | n/a |
+| Route | [New](./agent-docs/features/new.md) | Starting page for conversations | [new.jpg](agent-docs/reference-ui/new.jpg),  [new-detailed.jpg](agent-docs/reference-ui/new-detailed.jpg)| `https://claude.ai/new` |
+| Route | [Chat](./agent-docs/features/chat.md) | Conversation with chat messages | [chat.jpg](agent-docs/reference-ui/chat.jpg) | `https://claude.ai/chat/{uuid}` |
+| Route | [Recents](./agent-docs/features/recents.md) | Lists all chat conversations | [recents.jpg](agent-docs/reference-ui/recents.jpg) | `https://claude.ai/recents` |
+| Route | [Project](./agent-docs/features/project.md) | A project contains many chats | [project.jpg](agent-docs/reference-ui/project.jpg) | `https://claude.ai/project/{uuid}` |
+| Route | [Projects](./agent-docs/features/projects.md) | Lists all projects | [projects.jpg](agent-docs/reference-ui/projects.jpg) | `https://claude.ai/projects` |
+| Route | [Settings](./agent-docs/features/settings.md) | Parent route with shared tab navigation component | N/A | `https://claude.ai/settings` (redirects to profile) |
+| Route | ↳ [Profile](./agent-docs/features/profile.md) | User identity and preferences configuration | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `https://claude.ai/settings/profile` |
+| Route | ↳ [Appearance](./agent-docs/features/appearance.md) | Theme and visual preferences | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `https://claude.ai/settings/appearance` |
+| Route | ↳ [Account](./agent-docs/features/account.md) | Account management and logout | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `https://claude.ai/settings/account` |
+| Route | ↳ [Data Privacy](./agent-docs/features/data-privacy.md) | Privacy controls and settings | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `https://claude.ai/settings/data-privacy-controls` |
 
 Notes:
 1. Individual Chat and Project routes use unique UUIDs, enabling direct access via shareable links.
