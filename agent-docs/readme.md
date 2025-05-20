@@ -1,6 +1,58 @@
-# About Agent Docs
+# Claude.ai Prototype Documentation
 
-The purpose of this directory is to provide context and guidance to the v0 coding agent. It will be saved into the project source code as soon as the application has been created from the initial prompt. The agent and I will need to keep these files updated to accurately reflect the evolution of the project. I'll need to add new requirements in here too as I go. 
+This directory (`agent-docs/`) contains all specifications and guidance for implementing the Claude.ai prototype. Use this README as your starting point to navigate to the appropriate documentation.
 
-This readme file will likely be turned into an index summarising each document and linking to it.
+## Core Documents (root)
 
+| Document | Purpose | When to Use |
+|----------|---------|------------|
+| [prd.md](./prd.md) | Defines project goals, target functionality, and prioritized feature list | For understanding overall project scope and priorities |
+| [data-model-zustand.md](./data-model-zustand.md) | Details data structures, entity relationships, and state management | When implementing data interfaces or state updates |
+| [best-practices-technical.md](./best-practices-technical.md) | Technical guidelines for development | For understanding coding standards and patterns |
+
+## Directory: `./features`
+
+Feature documents contain the complete implementation specifications, acceptance criteria, and tracked tasks for incremental delivery.
+
+Each feature:
+- Represents a self-contained unit of functionality, with its own UI components, data interfaces, state management, and acceptance criteria.
+- Is divided into distinct, deliverable Tasks that provide testable value (with status tracked within the feature document)
+- Follows Lean principles where each Task represents a small, valuable increment toward the complete feature
+
+| Document| Description | Reference UI | URL Pattern |
+|---------|-------------|-----------|-----------|
+| [foundational.md](./agent-docs/features/foundational.md) | Base Next.js project with theming and light/dark mode | n/a | `https://claude.ai` |
+| [navigation.md](./agent-docs/features/navigation.md) | Modal Drawer Component shared for all pages | [navigation.jpg](agent-docs/reference-ui/navigation.jpg) | n/a |
+| [new.md](./agent-docs/features/new.md) | Starting page for conversations | [new.jpg](agent-docs/reference-ui/new.jpg),  [new-detailed.jpg](agent-docs/reference-ui/new-detailed.jpg)| `https://claude.ai/new` |
+| [chat.md](./agent-docs/features/chat.md) | Conversation with chat messages | [chat.jpg](agent-docs/reference-ui/chat.jpg) | `https://claude.ai/chat/{uuid}` |
+| [recents.md](./agent-docs/features/recents.md) | Lists all chat conversations | [recents.jpg](agent-docs/reference-ui/recents.jpg) | `https://claude.ai/recents` |
+| [project.md](./agent-docs/features/project.md) | A project contains many chats | [project.jpg](agent-docs/reference-ui/project.jpg) | `https://claude.ai/project/{uuid}` |
+| [projects.md](./agent-docs/features/projects.md) | Lists all projects | [projects.jpg](agent-docs/reference-ui/projects.jpg) | `https://claude.ai/projects` |
+| [settings.md](./agent-docs/features/settings.md) | Parent route with shared tab navigation component | (tbc) | `https://claude.ai/settings` (redirects to profile) |
+| ↳ [profile.md](./agent-docs/features/profile.md) | User identity and preferences configuration | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `https://claude.ai/settings/profile` |
+| ↳ [appearance.md](./agent-docs/features/appearance.md) | Theme and visual preferences | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `https://claude.ai/settings/appearance` |
+| ↳ [account.md](./agent-docs/features/account.md) | Account management and logout | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `https://claude.ai/settings/account` |
+| ↳ [data-privacy.md](./agent-docs/features/data-privacy.md) | Privacy controls and settings | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `https://claude.ai/settings/data-privacy-controls` |
+
+## Directory: `./reference-ui`
+
+The `/reference-ui` directory contains screenshots of the Claude.ai interface this application replicates. Use for reference during feature implementation:
+
+* [chat.jpg](./reference-ui/chat.jpg)
+* [navigation.jpg](./reference-ui/navigation.jpg)
+* [new.jpg](./reference-ui/new.jpg)
+* [new-detailed.jpg](./reference-ui/new-detailed.jpg)
+* [project.jpg](./reference-ui/project.jpg)
+* [projects.jpg](./reference-ui/projects.jpg)
+* [recents.jpg](./reference-ui/recents.jpg)
+* [settings.jpg](./reference-ui/settings.jpg)
+
+## Directory: `./user-flows`
+
+The `/user-flows` directory contains Mermaid diagrams visualizing key user interactions:
+
+| Flow | Description | Reference |
+|------|-------------|-----------|
+| [high-level-user-journey.mermaid](./user-flows/high-level-user-journey.mermaid) | End-to-end user experience | For understanding the overall application flow |
+| [new-chatting-star-delete.md](./user-flows/new-chatting-star-delete.md) | How users create and start new conversations | When implementing conversation creation |
+| [create-project.mermaid](./user-flows/create-project.mermaid) | How projects are created and structured | When implementing project functionality |
