@@ -6,7 +6,7 @@ This directory (`agent-docs/`) contains all specifications and guidance for impl
 
 | Document | Purpose | When to Use |
 |----------|---------|------------|
-| [prd.md](./prd.md) | Defines project goals, target functionality, and prioritized feature list | For understanding overall project scope and priorities |
+| [PRD.md](./PRD.md) | Defines project goals, target functionality, and prioritized feature list | For understanding overall project scope and priorities |
 | [data-model-zustand.md](./data-model-zustand.md) | Details data structures, entity relationships, and state management | When implementing data interfaces or state updates |
 | [best-practices-technical.md](./best-practices-technical.md) | Technical guidelines for development | For understanding coding standards and patterns |
 
@@ -29,10 +29,10 @@ Each feature:
 | [project.md](./features/project.md) | A project contains many chats | [project.jpg](./reference-ui/project.jpg) | `/project/{uuid}` |
 | [projects.md](./features/projects.md) | Lists all projects | [projects.jpg](./reference-ui/projects.jpg) | `/projects` |
 | [settings.md](./features/settings.md) | Parent route with shared tab navigation component | (tbc) | `/settings` (redirects to profile) |
-| ↳ [profile.md](./features/settings.md) | User identity and preferences configuration | [settings.jpg](./reference-ui/settings.jpg) | `/settings/profile` |
-| ↳ [appearance.md](./features/settings.md) | Theme and visual preferences | [settings.jpg](./reference-ui/settings.jpg) | `/settings/appearance` |
-| ↳ [account.md](./features/settings.md) | Account management and logout | [settings.jpg](./reference-ui/settings.jpg) | `/settings/account` |
-| ↳ [data-privacy.md](./features/settings.md) | Privacy controls and settings | [settings.jpg](./reference-ui/settings.jpg) | `/settings/data-privacy` |
+| ↳ profile<br/> ([settings.md](./features/settings.md)) | User identity and preferences configuration | [settings.jpg](./reference-ui/settings.jpg) | `/settings/profile` |
+| ↳ appearance<br/> ([settings.md](./features/settings.md)) | Theme and visual preferences | [settings.jpg](./reference-ui/settings.jpg) | `/settings/appearance` |
+| ↳ account<br/> ([settings.md](./features/settings.md)) | Account management and logout | [settings.jpg](./reference-ui/settings.jpg) | `/settings/account` |
+| ↳ data privacy<br/> ([settings.md](./features/settings.md)) | Privacy controls and settings | [settings.jpg](./reference-ui/settings.jpg) | `/settings/data-privacy` |
 
 ## Directory: `./reference-ui`
 

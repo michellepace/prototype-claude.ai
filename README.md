@@ -35,10 +35,10 @@ Features listed in order of priority for implementation:
 | Route | [Project](./agent-docs/features/project.md) | A project contains many chats | [project.jpg](agent-docs/reference-ui/project.jpg) | `/project/{uuid}` |
 | Route | [Projects](./agent-docs/features/projects.md) | Lists all projects | [projects.jpg](agent-docs/reference-ui/projects.jpg) | `/projects` |
 | Route | [Settings](./agent-docs/features/settings.md) | Parent route with shared tab navigation component | N/A | `/settings` (redirects to profile) |
-| Route | ↳ [Profile](./agent-docs/features/settings.md) | User identity and preferences configuration | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `/settings/profile` |
-| Route | ↳ [Appearance](./agent-docs/features/settings.md) | Theme and visual preferences | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `/settings/appearance` |
-| Route | ↳ [Account](./agent-docs/features/settings.md) | Account management and logout | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `/settings/account` |
-| Route | ↳ [Data Privacy](./agent-docs/features/settings.md) | Privacy controls and settings | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `/settings/data-privacy` |
+| Route | ↳ Profile<br/> ([settings.md](./features/settings.md)) | User identity and preferences configuration | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `/settings/profile` |
+| Route | ↳ Appearance<br/> ([settings.md](./features/settings.md)) | Theme and visual preferences | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `/settings/appearance` |
+| Route | ↳ Account<br/> ([settings.md](./features/settings.md)) | Account management and logout | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `/settings/account` |
+| Route | ↳ Data Privacy<br/> ([settings.md](./features/settings.md)) | Privacy controls and settings | [settings.jpg](agent-docs/reference-ui/settings.jpg) | `/settings/data-privacy` |
 
 Notes:
 1. Individual Chat and Project routes use unique UUIDs, enabling direct access via shareable links.
