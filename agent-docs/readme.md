@@ -21,18 +21,18 @@ Each feature:
 
 | Document| Description | Reference UI | URL Pattern |
 |---------|-------------|-----------|-----------|
-| [foundational.md](./features/foundational.md) | Base Next.js project with theming and light/dark mode | n/a | `https://claude.ai` |
+| [foundational.md](./features/foundational.md) | Base Next.js project with theming and light/dark mode | n/a | `/` |
 | [navigation.md](./features/navigation.md) | Modal Drawer Component shared for all pages | [navigation.jpg](./reference-ui/navigation.jpg) | n/a |
-| [new.md](./features/new.md) | Starting page for conversations | [new.jpg](./reference-ui/new.jpg),  [new-detailed.jpg](./reference-ui/new-detailed.jpg)| `https://claude.ai/new` |
-| [chat.md](./features/chat.md) | Conversation with chat messages | [chat.jpg](./reference-ui/chat.jpg) | `https://claude.ai/chat/{uuid}` |
-| [recents.md](./features/recents.md) | Lists all chat conversations | [recents.jpg](./reference-ui/recents.jpg) | `https://claude.ai/recents` |
-| [project.md](./features/project.md) | A project contains many chats | [project.jpg](./reference-ui/project.jpg) | `https://claude.ai/project/{uuid}` |
-| [projects.md](./features/projects.md) | Lists all projects | [projects.jpg](./reference-ui/projects.jpg) | `https://claude.ai/projects` |
-| [settings.md](./features/settings.md) | Parent route with shared tab navigation component | (tbc) | `https://claude.ai/settings` (redirects to profile) |
-| ↳ [profile.md](./features/settings.md) | User identity and preferences configuration | [settings.jpg](./reference-ui/settings.jpg) | `https://claude.ai/settings/profile` |
-| ↳ [appearance.md](./features/settings.md) | Theme and visual preferences | [settings.jpg](./reference-ui/settings.jpg) | `https://claude.ai/settings/appearance` |
-| ↳ [account.md](./features/settings.md) | Account management and logout | [settings.jpg](./reference-ui/settings.jpg) | `https://claude.ai/settings/account` |
-| ↳ [data-privacy.md](./features/settings.md) | Privacy controls and settings | [settings.jpg](./reference-ui/settings.jpg) | `https://claude.ai/settings/data-privacy-controls` |
+| [new.md](./features/new.md) | Starting page for conversations | [new.jpg](./reference-ui/new.jpg),  [new-detailed.jpg](./reference-ui/new-detailed.jpg)| `/new` |
+| [chat.md](./features/chat.md) | Conversation with chat messages | [chat.jpg](./reference-ui/chat.jpg) | `/chat/{uuid}` |
+| [recents.md](./features/recents.md) | Lists all chat conversations | [recents.jpg](./reference-ui/recents.jpg) | `/recents` |
+| [project.md](./features/project.md) | A project contains many chats | [project.jpg](./reference-ui/project.jpg) | `/project/{uuid}` |
+| [projects.md](./features/projects.md) | Lists all projects | [projects.jpg](./reference-ui/projects.jpg) | `/projects` |
+| [settings.md](./features/settings.md) | Parent route with shared tab navigation component | (tbc) | `/settings` (redirects to profile) |
+| ↳ [profile.md](./features/settings.md) | User identity and preferences configuration | [settings.jpg](./reference-ui/settings.jpg) | `/settings/profile` |
+| ↳ [appearance.md](./features/settings.md) | Theme and visual preferences | [settings.jpg](./reference-ui/settings.jpg) | `/settings/appearance` |
+| ↳ [account.md](./features/settings.md) | Account management and logout | [settings.jpg](./reference-ui/settings.jpg) | `/settings/account` |
+| ↳ [data-privacy.md](./features/settings.md) | Privacy controls and settings | [settings.jpg](./reference-ui/settings.jpg) | `/settings/data-privacy` |
 
 ## Directory: `./reference-ui`
 
