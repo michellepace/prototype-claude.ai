@@ -29,6 +29,7 @@
 
 For example:
 
+```txt
 components/
 ├── navigation/
 │   ├── navigation-drawer.tsx (main container component)
@@ -36,6 +37,7 @@ components/
 │   ├── navigation-items.tsx (scrollable content)
 │   ├── navigation-footer.tsx (user profile section)
 │   └── index.ts (export all components)
+```
 
 ### Use Zustand for State Management
 When asked to implement Zustand, the goal is to:
