@@ -36,7 +36,7 @@ Each feature:
 
 ## Directory: `./reference-ui`
 
-The `/reference-ui` directory contains screenshots of the Claude.ai interface this application replicates. Use for reference during feature implementation:
+Contains screenshots of the Claude.ai interface which this application replicates. Use for reference during feature implementation:
 
 * [chat.jpg](./reference-ui/chat.jpg)
 * [navigation.jpg](./reference-ui/navigation.jpg)
@@ -49,10 +49,10 @@ The `/reference-ui` directory contains screenshots of the Claude.ai interface th
 
 ## Directory: `./user-flows`
 
-The `/user-flows` directory contains Mermaid diagrams visualizing key user interactions:
+Contains Mermaid diagrams visualizing key user interactions:
 
 | Flow | Description | Reference |
 |------|-------------|-----------|
 | [high-level-user-journey.mermaid](./user-flows/high-level-user-journey.mermaid) | End-to-end user experience | For understanding the overall application flow |
-| [new-chatting-star-delete.md](./user-flows/new-chatting-star-delete.md) | How users create and start new conversations | When implementing conversation creation |
+| [new-chatting-star-delete.mermaid](./user-flows/new-chatting-star-delete.mermaid) | How users create and start new conversations | When implementing conversation creation |
 | [create-project.mermaid](./user-flows/create-project.mermaid) | How projects are created and structured | When implementing project functionality |
