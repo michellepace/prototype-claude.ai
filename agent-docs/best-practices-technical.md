@@ -1,18 +1,103 @@
 # Apply These Best Practices
 
-## UI Theming Standards
+## UI Centralised Theming Standards
+
+**Core Principle:** Separate theme values from styling implementation for maintainable, consistent UI in Tailwind 3.x + shadcn/ui projects.
+
+**Key Benefit:** Global theme changes via `globals.css` without touching individual components.
 
 ### Use Tailwind Best Practices
-- Utility-first: style with Tailwind utility classes
-- Mobile-first: design first without breakpoint prefixes (e.g., `sm:`, `md:`, etc) then add responsive variants only where needed
+
+- **Utility-first:** Style with utility classes instead of custom CSS
+- **Mobile-first:** Start with mobile base classes, add `sm:`, `md:`, `lg:`, etc. responsive prefixes only when needed
+- **Responsive by default:** Scale typography, spacing, and layouts across devices
+   - Typography: e.g., `text-lg sm:text-xl lg:text-2xl`
+   - Spacing: e.g., `p-3 sm:p-4 lg:p-6`
+   - Layout: e.g., `flex-col sm:flex-row`, `grid-cols-1 md:grid-cols-3`
 
 ### Implement Dynamic Theming (Tailwind 3.x)
-- Define CSS variables in `globals.css` (e.g., colors, typography, etc.)
+
+- Define CSS variables in `globals.css` (e.g., colors, radius, font family)
 - Map CSS variables to utility classes in `tailwind.config.ts`
+- Use theme-based colors (`bg-primary`) instead of fixed colors (`bg-blue-500`)
 
 ### Avoid custom styling whenever possible
+
 - Style with Tailwind utility classes
 - Use shadcn/ui component variants over custom css
+- **Avoid:** Direct colors (`bg-blue-500`) → **Use:** semantic colors (`bg-primary`)
+- **Avoid:** Fixed sizing (`p-6`, `text-2xl`) → **Use:** responsive (`p-3 sm:p-6`, `text-lg sm:text-2xl`)
+
+### Color Customization Decision Flow
+
+**First, try modifying existing colors:**
+- Can existing semantic color be adjusted? → Update values in `globals.css` `:root` and `.dark`
+- Example: Change `--primary: 221.2 83.2% 53.3%;` to `--primary: 210 100% 50%;`
+
+**Only if new semantic color is truly needed:**
+
+1. **Define CSS variable in `globals.css`:**
+
+   ```css
+   :root { 
+     --brand: 210 100% 50%; 
+     --brand-foreground: 0 0% 100%;
+   }
+   .dark { 
+     --brand: 210 90% 35%; 
+     --brand-foreground: 0 0% 100%;
+   }
+   ```
+
+2. **Map in `tailwind.config.ts`:**
+   
+   ```typescript
+   brand: {
+     DEFAULT: "hsl(var(--brand) / <alpha-value>)",
+     foreground: "hsl(var(--brand-foreground) / <alpha-value>)",
+   }
+   ```
+
+3. **Usage example:**
+
+   ```tsx
+   <div className="bg-brand text-brand-foreground p-3 sm:p-4 rounded-md">
+     <Button className="bg-brand/90 hover:bg-brand w-full sm:w-auto">
+       Brand Action
+     </Button>
+   </div>
+   ```
+
+### Example: All Concepts Applied
+
+```tsx
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+
+export default function CardDemo() {
+  return (
+    <div className="p-4 sm:p-6">
+      <Card className="w-full max-w-md bg-card text-card-foreground border-border">
+        <CardHeader>
+          <CardTitle className="text-lg sm:text-xl">Project Dashboard</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3 sm:space-y-4">
+          <p className="text-sm text-muted-foreground">
+            Track your progress with semantic colors and responsive design.
+          </p>
+          <div className="bg-accent/10 p-3 rounded-md">
+            <span className="text-sm font-medium">Status: Active</span>
+          </div>
+        </CardContent>
+        <div className="p-4 sm:p-6 pt-0 flex gap-2">
+          <Button variant="outline" size="sm">Cancel</Button>
+          <Button size="sm">Save</Button>
+        </div>
+      </Card>
+    </div>
+  )
+}
+```
 
 ## Code Architecture
 
