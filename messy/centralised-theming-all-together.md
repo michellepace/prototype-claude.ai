@@ -1,4 +1,13 @@
-# Best Practices to Avoid Confusion
+## Centralised Theming
+
+This approach solves the problem of inconsistent styling and difficult theme changes in Tailwind 3.x + shadcn/ui projects. The strategy separates concerns:
+- **CSS variables** (in globals.css) handle theme-related styling that needs to change globally (e.g., colors, raidus, font family)
+- **Tailwind utilities** handle all other styling for consistency and maintainability
+- **Avoid custom CSS** to maintain design system consistency and prevent style conflicts
+
+This enables theme changes without touching individual components, while preserving Tailwind's utility-first benefits and shadcn/ui's component patterns.
+
+### Response Extract: Best Practices to Avoid Confusion
 
 To maintain a centralized, consistent theming system:
 
@@ -29,7 +38,7 @@ colors: {
 This approach gives you the benefits of both systems: the flexibility of CSS variables and the utility-first approach of Tailwind.
 
 
-# Best Practices Reconciled
+### Response Extract: Best Practices Reconciled
 Here's how to reconcile these guidelines:
 
 1. **Use Tailwind's utility-first approach** - Style components using utility classes instead of custom CSS classes
@@ -40,7 +49,7 @@ Here's how to reconcile these guidelines:
   
 4. **Use shadcn/ui component variants** - Take advantage of shadcn/ui's built-in variants   rather than custom styling
 
-## A Practical Example
+#### A Practical Example
 
 ```tsx
 // This follows ALL the best practices:
@@ -59,52 +68,14 @@ This approach gives you:
 - The maintainability of a consistent semantic color system
 - The convenience of theming through centralized CSS variables
 
-# Best Practices for Typography
-1. **Use Tailwind's typography utilities directly** for most text styling
-2. **Configure font families in your `tailwind.config.ts`**
-3. **Let shadcn/ui components use their default typography** when appropriate
-4. **Establish typography guidelines** for your project (e.g., "Use `text-lg font-medium` for section headers")
-5. **Consider the `@tailwindcss/typography` plugin** for rich text content
+### Response Extract: Recommended Simplified Approach
 
-Unlike colors, where shadcn/ui provides a comprehensive semantic naming system, typography in shadcn/ui projects tends to rely more directly on Tailwind's standard utilities.
-
-## Example: Consistent Typography System
-
-```
-// Title
-<h1 className="text-3xl font-bold text-foreground">Page Title</h1>
-
-// Subtitle
-<h2 className="text-xl font-medium text-foreground">Section Header</h2>
-
-// Body text
-<p className="text-base text-foreground">Regular paragraph text.</p>
-
-// Secondary text
-<p className="text-sm text-muted-foreground">Additional information.</p>
-
-// In a shadcn/ui Card component
-<Card>
-  <CardHeader>
-    <CardTitle>Card Title (has built-in typography)</CardTitle>
-    <CardDescription>Card description (has built-in typography)</CardDescription>
-  </CardHeader>
-  <CardContent>
-    <p className="text-base">Card body text.</p>
-  </CardContent>
-</Card>
-```
-
-By consistently applying these typography patterns throughout your application, you'll maintain a cohesive visual hierarchy while taking advantage of Tailwind's utility-first approach.
-
-# The Recommended Simplified Approach
-
-## For Colors and Radius:
+#### For Colors and Radius:
 - Use shadcn/ui's CSS variables in `globals.css`
 - These define your semantic color system (`--primary`, `--background`, etc.) and `--radius`
 - shadcn/ui components will automatically use these variables
 
-## For Everything Else:
+#### For Everything Else:
 - Use Tailwind's standard utilities directly
 - Font sizes: `text-sm`, `text-lg`, etc.
 - Spacing: `p-4`, `m-2`, etc.
@@ -118,7 +89,7 @@ This simplified approach gives you:
 
 Most projects don't need to extend the CSS variables approach beyond what shadcn/ui already provides for colors and radius. The standard Tailwind utilities work great for everything else and are already well-documented and widely understood.
 
-## In Practice
+#### In Practice
 Your `globals.css` would contain:
 
 ```
@@ -163,7 +134,7 @@ And your components would use:
 
 This approach strikes the right balance between maintainability and flexibility while keeping things relatively simple.
 
-# UI Styling Approach
+### Response Extract: UI Styling Approach
 
 1. **Use Tailwind's utility classes** for all styling (layout, spacing, typography, etc.)
 
@@ -202,7 +173,7 @@ This approach strikes the right balance between maintainability and flexibility 
 }
 ```
 
-## Practical Example
+#### Practical Example
 
 ```tsx
 <div className="flex flex-col p-4 bg-card text-card-foreground rounded-lg shadow-md">
