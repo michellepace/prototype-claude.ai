@@ -1,11 +1,16 @@
-## Centralised Theming
+# Apply These Best Practices
 
-This approach solves the problem of inconsistent styling and difficult theme changes in Tailwind 3.x + shadcn/ui projects. The strategy separates concerns:
-- **CSS variables** (in globals.css) handle theme-related styling that needs to change globally (e.g., colors, raidus, font family)
-- **Tailwind utilities** handle all other styling for consistency and maintainability
-- **Avoid custom CSS** to maintain design system consistency and prevent style conflicts
+## UI Centralised Theming Standards
 
-This enables theme changes without touching individual components, while preserving Tailwind's utility-first benefits and shadcn/ui's component patterns.
+**Core Principle:** Separate theme values from styling implementation for maintainable, consistent UI in Tailwind 3.x + shadcn/ui projects.
+
+**Implementation:**
+- **CSS variables** (`globals.css`) mapped to Tailwind utilities (`tailwind.config.ts`): Colors, radius, font family - configurable values that change globally
+- **Tailwind utilities**: Spacing, layout, typography, responsive design - all other styling  
+- **Minimise custom CSS**: Use utility classes and shadcn/ui variants as first preference
+
+**Benefits:** Global theme changes via `globals.css` without touching components. Consistent design system through Tailwind utility-first approach with semantic color variables.
+
 
 ### Response Extract: Best Practices to Avoid Confusion
 
