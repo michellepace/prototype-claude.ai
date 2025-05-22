@@ -4,8 +4,7 @@ This approach solves the problem of inconsistent styling and difficult theme cha
 
 ### Core Decision Rule
 
-- **Use CSS variables** (in `globals.css`) to handle theme-related styling that needs to change globally (e.g., colors, radius, font family). Ensure to map to Tailwind utility classes in `tailwind.config.ts`.
-- **Use CSS variables** (in `globals.css`) for theme-related values that need global consistency (colors, radius, and font family if requested). Map these to Tailwind utility classes in `tailwind.config.ts`.
+- **Use CSS variables** (in `globals.css`) for theme-related values that need global consistency (colors, radius, font family). Map these to Tailwind utility classes in `tailwind.config.ts`.
 - **Use Tailwind utility-first approach** style with Tailwind utility classes application wide
 - **Avoid custom CSS** use Tailwind utilities and/or shadcn/ui variants instead whenever possible
 
@@ -59,7 +58,7 @@ Complete component showing semantic colors, standard utilities, and component va
 
 ### Code Templates
 
-#### Custom Color Addition (when needed)
+#### Custom Color Addition
 
 If requested to add new semantic colors:
 
@@ -81,7 +80,7 @@ colors: {
 }
 ```
 
-#### Font Family Setup (if requested)
+#### Font Family Setup (app-wide)
 
 If requested to set up app-wide font family:
 
