@@ -1,5 +1,6 @@
 ## Add light/dark theme toggle functionality
-Install and configure a theme toggle below buttons on Root page.
+
+This implementation uses next-themes which automatically handles localStorage persistence, system preference detection, and seamless shadcn/ui integration without any flash of incorrect theme. It applies theming globally to all pages and components.
 
 1. **Step 1:** Install needed package, run: `npm install next-themes`
 
@@ -46,12 +47,12 @@ export default function RootLayout({
 }
 ```
 
-4. Create `components/light-dark-toggle.tsx` component and then place on root page below buttons:
+4. **Step 4:** Create `components/light-dark-toggle.tsx` component and place in the Settings page:
 
 ```typescript
 "use client"
 import * as React from "react"
-import { MoonIcon, SunIcon } from "@heroicons/react/24/outline"
+import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 
@@ -69,9 +70,11 @@ export function LightDarkToggle() {
       onClick={toggleTheme}
       aria-label="Toggle theme"
     >
-      <SunIcon className="h-5 w-5 rotate-0 scale-100 transition-all dark:scale-0" />
-      <MoonIcon className="absolute h-5 w-5 rotate-0 scale-0 transition-all dark:scale-100" />
+      <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+      <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
     </Button>
   )
 }
 ```
+
+5. **Step 5:** Import and use the toggle in the Settings page for app wide application.
