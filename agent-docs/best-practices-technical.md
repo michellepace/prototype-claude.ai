@@ -8,12 +8,24 @@
 
 ### Use Tailwind Best Practices
 
-- **Utility-first:** Style with utility classes instead of custom CSS
-- **Mobile-first:** Start with mobile base classes, add `sm:`, `md:`, `lg:`, etc. responsive prefixes only when needed
-- **Responsive by default:** Scale typography, spacing, and layouts across devices
-   - Typography: e.g., `text-lg sm:text-xl lg:text-2xl`
-   - Spacing: e.g., `p-3 sm:p-4 lg:p-6`
-   - Layout: e.g., `flex-col sm:flex-row`, `grid-cols-1 md:grid-cols-3`
+**Utility-first approach:** Compose designs directly in markup using atomic utility classes
+- Prefer `<div class="p-4 text-center bg-blue-500 text-white">` over custom CSS classes
+- Build complex components by combining small, single-purpose utilities
+
+**Use Tailwind's relative unit system:**
+- Tailwind's spacing, sizing, and typography utilities use relative units (rem) by default
+- Avoid custom pixel values (`style="width: 200px"`) in favor of Tailwind's scaled utilities
+- Example: Use `w-24` (6rem) instead of inline `width: 96px`
+
+**Mobile-first responsive design:** 
+- Default (unprefixed) utilities apply to all screen sizes
+- Add responsive variants (`sm:`, `md:`, `lg:`, `xl:`, `2xl:`) only for larger breakpoints
+- Example: `<div class="text-sm sm:text-base lg:text-lg">` (small by default, base at 640px+, large at 1024px+)
+
+**Consistent responsive patterns:**
+- Layout: `flex-col sm:flex-row`, `grid-cols-1 md:grid-cols-3`
+- Spacing: `p-3 sm:p-4 lg:p-6`, `gap-2 md:gap-4`
+- Typography: `text-base md:text-lg xl:text-xl`
 
 ### Implement Dynamic Theming (Tailwind 3.x)
 
@@ -150,6 +162,9 @@ Exemplary Project Structure:
 ```
 store/
 ├── index.ts                Main store creation with persist middleware
+├── types.ts/               Shared types as needed
+├── utils.ts/               Additional utilities as needed
+├── hooks.ts/               Custom hooks for components to access state
 ├── slices/                 Logical state divisions
 │   ├── userSlice.ts        User preferences
 │   ├── documentsSlice.ts   Markdown documents
