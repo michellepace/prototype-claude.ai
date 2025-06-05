@@ -8,9 +8,9 @@
 
 ### Use Tailwind Best Practices
 
-**Utility-first approach:** Compose designs directly in markup using atomic utility classes
-- Prefer `<div class="p-4 text-center bg-blue-500 text-white">` over custom CSS classes
-- Build complex components by combining small, single-purpose utilities
+- **Utility-first approach:** Compose designs directly in markup using atomic utility classes
+  - Prefer `<div class="p-4 text-center bg-primary text-primary-foreground">` over custom CSS classes
+  - Build complex components by combining small, single-purpose utilities
 
 **Use Tailwind's relative unit system:**
 - Tailwind's spacing, sizing, and typography utilities use relative units (rem) by default
@@ -27,18 +27,15 @@
 - Spacing: `p-3 sm:p-4 lg:p-6`, `gap-2 md:gap-4`
 - Typography: `text-base md:text-lg xl:text-xl`
 
+**Prefer shadcn/ui component variants:**
+- Use built-in variants before custom styling (e.g., `<Button variant="outline">`)
+- Extend components through composition rather than modification
+
 ### Implement Dynamic Theming (Tailwind 3.x)
 
 - Define CSS variables in `globals.css` (e.g., colors, radius, font family)
 - Map CSS variables to utility classes in `tailwind.config.ts`
 - Use theme-based colors (`bg-primary`) instead of fixed colors (`bg-blue-500`)
-
-### Avoid custom styling whenever possible
-
-- Style with Tailwind utility classes
-- Use shadcn/ui component variants over custom css
-- **Avoid:** Direct colors (`bg-blue-500`) → **Use:** semantic colors (`bg-primary`)
-- **Avoid:** Fixed sizing (`p-6`, `text-2xl`) → **Use:** responsive (`p-3 sm:p-6`, `text-lg sm:text-2xl`)
 
 ### Color Customization Decision Flow
 
