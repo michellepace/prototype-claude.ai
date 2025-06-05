@@ -42,9 +42,7 @@ colors: {
 
 This approach gives you the benefits of both systems: the flexibility of CSS variables and the utility-first approach of Tailwind.
 
-
 ### Response Extract: Best Practices Reconciled
-Here's how to reconcile these guidelines:
 
 1. **Use Tailwind's utility-first approach** - Style components using utility classes instead of custom CSS classes
   
@@ -52,7 +50,7 @@ Here's how to reconcile these guidelines:
   
 3. **Compose with all other Tailwind utilities normally** - Continue using all other Tailwind utilities as usual (`flex`, `p-4`, `rounded-lg`, etc.)
   
-4. **Use shadcn/ui component variants** - Take advantage of shadcn/ui's built-in variants   rather than custom styling
+4. **Use shadcn/ui component variants** - Take advantage of shadcn/ui's built-in variants rather than custom styling
 
 #### A Practical Example
 
@@ -91,8 +89,6 @@ This simplified approach gives you:
 1. A consistent color theme that's easy to change (via `globals.css`)
 2. The full flexibility of Tailwind's utility system for everything else
 3. Perfect compatibility with shadcn/ui components
-
-Most projects don't need to extend the CSS variables approach beyond what shadcn/ui already provides for colors and radius. The standard Tailwind utilities work great for everything else and are already well-documented and widely understood.
 
 #### In Practice
 Your `globals.css` would contain:
