@@ -44,11 +44,11 @@ Header:
 
 ## Light/Dark Mode Implementation
 
-Follow `agent-docs/implement-light-dark-mode.md`
+Follow [agent-docs/implement-light-dark-mode.md](/agent-docs/implement-light-dark-mode.md)
 
 # Data Model & Zustand Implementation Guide
 (to be completed)
 
 # Apply These Best Practices
 
-Follow `agent-docs/best-practices-technical.md`
+Follow [agent-docs/best-practices-technical.md](/agent-docs/best-practices-technical.md)
