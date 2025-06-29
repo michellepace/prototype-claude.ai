@@ -1,6 +1,6 @@
 # Apply These Best Practices
 
-## UI Rules and Theming
+## UI Rules and Theming (may delete and use `best-practices-ui.md`)
 
 **Core Principle:** Separate theme values from styling implementation for maintainable, consistent UI in Tailwind 3.x + shadcn/ui projects.
 
