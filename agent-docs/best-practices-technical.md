@@ -1,16 +1,27 @@
 # Apply These Best Practices
 
-## UI Centralised Theming Standards
+## UI Rules and Theming
 
 **Core Principle:** Separate theme values from styling implementation for maintainable, consistent UI in Tailwind 3.x + shadcn/ui projects.
 
 **Key Benefit:** Global theme changes via `globals.css` without touching individual components.
 
-### Use Tailwind Best Practices
+### Core Rules
 
-- **Utility-first approach:** Compose designs directly in markup using atomic utility classes
-  - Prefer `<div class="p-4 text-center bg-primary text-primary-foreground">` over custom CSS classes
-  - Build complex components by combining small, single-purpose utilities
+**Utility-first approach:** Compose designs directly in markup using atomic utility classes
+- Prefer `<div class="p-4 text-center bg-primary text-primary-foreground">` over custom CSS classes
+- Build complex components by combining small, single-purpose utilities
+
+**Prefer shadcn/ui component variants:**
+- Use built-in variants before custom styling (e.g., `<Button variant="outline">`)
+- Extend components through composition rather than modification
+
+**Implement Dynamic Theming (Tailwind 3.x)**
+- Define CSS variables in `globals.css` (e.g., colors, radius, font family)
+- Map CSS variables to utility classes in `tailwind.config.ts`
+- Use theme-based colors (`bg-primary`) instead of fixed colors (`bg-blue-500`)
+
+### Responsive Rules
 
 **Use Tailwind's relative unit system:**
 - Tailwind's spacing, sizing, and typography utilities use relative units (rem) by default
@@ -27,17 +38,7 @@
 - Spacing: `p-3 sm:p-4 lg:p-6`, `gap-2 md:gap-4`
 - Typography: `text-base md:text-lg xl:text-xl`
 
-**Prefer shadcn/ui component variants:**
-- Use built-in variants before custom styling (e.g., `<Button variant="outline">`)
-- Extend components through composition rather than modification
-
-### Implement Dynamic Theming (Tailwind 3.x)
-
-- Define CSS variables in `globals.css` (e.g., colors, radius, font family)
-- Map CSS variables to utility classes in `tailwind.config.ts`
-- Use theme-based colors (`bg-primary`) instead of fixed colors (`bg-blue-500`)
-
-### Color Customization Decision Flow
+### Example: Theme Colours Decision Flow
 
 **First, try modifying existing colors:**
 - Can existing semantic color be adjusted? → Update values in `globals.css` `:root` and `.dark`
@@ -107,6 +108,8 @@ export default function CardDemo() {
   )
 }
 ```
+
+---
 
 ## Code Architecture
 
